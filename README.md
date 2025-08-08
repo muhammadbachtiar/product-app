@@ -2,6 +2,7 @@ Product List APP
 BE External menggunakan non auth firebase
 Private route (-)
 
+npm version 10.8.2
 set file .env sebagai berikut
 
 NEXT_API_EXTERNAL_URL=
