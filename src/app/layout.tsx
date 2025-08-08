@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import QueryProvider from "@/providers/query-client";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectRoutes from "@/providers/protect-routes";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +32,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Toaster position="top-right" richColors />
+        <QueryProvider>
+          <AuthProvider>
+            <ProtectRoutes>
+              <AntdRegistry>{children}</AntdRegistry>
+            </ProtectRoutes>
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );
